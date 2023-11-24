@@ -29,10 +29,27 @@
       background-color: #4573d6;
     }
 
-    .qr-code {
+    .sbp-logo,
+    .sbp-logo img {
       position: absolute;
-      width: 293px;
-      height: 293px;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      z-index: 1;
+    }
+
+    .sbp-logo {
+      height: 100px;
+      width: 100px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .sbp-logo img {
+      display: block;
+      max-height: 80%;
+      transform: translateY(-50%) translateX(0);
+      left: 17px;
     }
   </style>
 </head>
@@ -68,15 +85,12 @@
     Пройдите по ссылке для проведения оплаты через СБП
   </p>
 
-  <div style="position: relative;  display: flex; width: 100%; justify-content: center; ">
-    <img width="150px" src="https://sbp.nspk.ru/assets/images/logo-black.svg" alt="SBP LOGO">
-  </div>
-
   <div
     style="position: relative;  width: 330px;  height: 330px;  margin: auto;  display: flex;  justify-content: center;  align-items: center;">
-    <img class="qr-code"
-      src="https://api.qrserver.com/v1/create-qr-code/?data=https://qr.nspk.ru/AD10007KQ4MRO8KG8B980SJUL84HTO9B?type=02&bank=100000000034&sum=95660&cur=RUB&crc=6F5B;size=293x293"
-      alt="QR-код">
+    <div id="qrcode"></div>
+    <div class="sbp-logo">
+      <img src="https://sbp.nspk.ru/assets/images/logo.svg" alt="SBP LOGO">
+    </div>
   </div>
 
   <button type="button" onclick="window.open('$!QR_CODE_URL','_blank');">
@@ -88,6 +102,19 @@
   </div>
 
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  var qrcode = new QRCode(document.getElementById("qrcode"), {
+    text: "https://qr.nspk.ru/AD10007KQ4MRO8KG8B980SJUL84HTO9B?type=02&bank=100000000034&sum=95660&cur=RUB&crc=6F5B",
+    width: 293,
+    height: 293,
+    correctLevel: QRCode.CorrectLevel.H,
+  });
+  function showQRCode() {
+    qrcode.makeCode(document.getElementById("qrcode").value);
+  }
+</script>
 
 <script type="text/javascript">
 
