@@ -1,10 +1,19 @@
-<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR code</title>
   <style>
+    body {
+      background-color: #fff;
+    }
+
     button {
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       height: 40px;
       font-size: 12px;
       font-weight: 700;
@@ -19,117 +28,137 @@
     button:hover {
       background-color: #4573d6;
     }
+
+    .qr-wrapper {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 16px auto;
+    }
+
+    .qr-code {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+    }
+
+    .sbp-logo,
+    .sbp-logo img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      z-index: 1;
+    }
+
+    .sbp-logo {
+      height: calc(25% / 1.5);
+      width: calc(33% / 1.5);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .sbp-logo img {
+      display: block;
+      max-height: 80%;
+      transform: translateY(-50%) translateX(0);
+      left: 17px;
+    }
   </style>
 </head>
-<header>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-</header>
 
 <body
   style="max-width: 340px; width: 340px; margin-left: auto; margin-right: auto; background-color: #ffffff; font-family: Arial, sans-serif;">
 
   <div style="margin-top: 30px; margin-bottom: 30px;">
-    <h1 style="color: #4E5D78; font-weight: 700; font-size: 22;">
-      Статус пополнения
+    <h1 style="color: #4E5D78; font-weight: 700; font-size: 20;">
+      Оплата СБП
     </h1>
   </div>
 
   <hr style="border: none; background-color: #E0E0E0; height: 1px;">
+
   <div style="display: flex; flex-direction: row; width: 100%;">
-    <p style="min-width: 40%; color: #4E5D78; font-size: 14px; font-weight: 700; line-height: 1.2; margin: 0;">
-      Платеж
+    <p style="min-width: 40%; color: #4E5D78; font-size: 12px; font-weight: 700; line-height: 1.2; margin: 0;">
+      Сумма*
     </p>
-    <span style="color: #4E5D78; font-size: 14px; line-height: 1.2; margin: 0;" th:text="${orderId}"></span>
+    <span style="color: #4E5D78; font-size: 14px; line-height: 1.2; margin: 0;">$!AMOUNT RUB</span>
   </div>
-  <hr style="border: none; background-color: #E0E0E0; height: 1px;">
-  <div style="display: flex; flex-direction: row; width: 100%;">
-    <p style="min-width: 40%; color: #4E5D78; font-size: 14px; font-weight: 700; line-height: 1.2; margin: 0">
-      Аккаунт Steam
-    </p>
-    <span style="color: #4E5D78; font-size: 14px; line-height: 1.2; margin: 0;" th:text="${accountName}"></span>
-  </div>
-  <hr style="border: none; background-color: #E0E0E0; height: 1px;">
-  <div style="display: flex; flex-direction: row; width: 100%;">
-    <p style="min-width: 40%; color: #4E5D78; font-size: 14px; font-weight: 700; line-height: 1.2; margin: 0">
-      Сумма
-    </p>
-    <span style="color: #4E5D78; font-size: 14px; line-height: 1.2; margin: 0;" th:text="${amountFormatted}"></span>
-  </div>
-  <hr style="border: none; background-color: #E0E0E0; height: 1px;">
-  <div style="display: flex; flex-direction: row; width: 100%;">
-    <p style="min-width: 40%; color: #4E5D78; font-size: 14px; font-weight: 700; line-height: 1.2; margin: 0">
-      Описание
-    </p>
-    <span style="color: #4E5D78; font-size: 14px; line-height: 1.2; margin: 0;" th:text="${orderDescription}"></span>
-  </div>
-  <hr style="border: none; background-color: #E0E0E0; height: 1px;">
 
-  <div th:if="${status == 'approved'}"
-    style="position: relative; display: flex; flex-direction: column; width: 100%; align-items: center; margin-top: 40px;">
-    <div
-      style="position: relative; width: 200px; height: 200px; display: flex; justify-content: center; align-items: center">
-      <div
-        style="position: absolute; width: 40px; height: 40px; z-index: 25; display: flex; justify-content: center; align-items: center;">
-        <div
-          style="position: absolute; width: 40px; height: 40px; border-radius: 50%; z-index: 25; border: 2px solid #ffffff; display: flex; justify-content: center; align-items: center;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#ffffff">
-            <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-          </svg>
-        </div>
-        <div
-          style="position: absolute; width: 100px; height: 100px; border-radius: 50%; z-index: 20; background-color: #4CAF50;">
-        </div>
-        <div
-          style="position: absolute; width: 150px; height: 150px; border-radius: 50%; z-index: 15; background-color: #4CAF50;; opacity: 0.3;">
-        </div>
-        <div
-          style="position: absolute; width: 200px; height: 200px; border-radius: 50%; z-index: 10; background-color: #4CAF50;; opacity: 0.1;">
-        </div>
-      </div>
+  <hr style="border: none; background-color: #E0E0E0; height: 1px; margin-bottom: 16px; ">
+
+  <p
+    style="min-width: 40%; color: #8C919E; font-size: 14px; font-weight: 400; line-height: 1.2; margin: 0; font-style: italic;">
+    *Итоговая сумма списания производится в рублях по курсу расчетного банка на момент оплаты.
+  </p>
+
+  <hr style="border: none; background-color: #E0E0E0; height: 1px; margin-top: 16px;">
+
+  <p style="min-width: 40%; color: #4E5D78; font-size: 14px; font-weight: 700; line-height: 1.2; margin: 0;">
+    Пройдите по ссылке для проведения оплаты через СБП
+  </p>
+
+  <div class="qr-wrapper">
+    <div class="sbp-logo">
+      <img src="https://sbp.nspk.ru/assets/images/logo.svg" alt="SBP LOGO">
     </div>
-
-    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-      <h2 style="color: #4CAF50; font-size: 18px; font-weight: 700; margin-top: 8px;">
-        Оплата прошла успешно!
-      </h2>
-    </div>
+    <img class="qr-code"
+      src="https://qr.nspk.ru/AD10007KQ4MRO8KG8B980SJUL84HTO9B?type=02&bank=100000000034&sum=95660&cur=RUB&crc=6F5B"
+      alt="QR-код">
   </div>
 
-  <div th:unless="${status == 'approved'}"
-    style="position: relative; display: flex; flex-direction: column; width: 100%; align-items: center; margin-top: 40px;">
-    <div
-      style="position: relative; width: 200px; height: 200px; display: flex; justify-content: center; align-items: center">
-      <div
-        style="position: absolute; width: 40px; height: 40px; z-index: 25; display: flex; justify-content: center; align-items: center;">
-        <div
-          style="position: absolute; width: 40px; height: 40px; border-radius: 50%; z-index: 25; border: 2px solid #ffffff; display: flex; justify-content: center; align-items: center;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M19 7l-5 5 5 5-2 2-5-5-5 5-2-2 5-5-5-5 2-2 5 5 5-5 2 2z" fill="#ffffff" />
-          </svg>
-        </div>
-        <div
-          style="position: absolute; width: 100px; height: 100px; border-radius: 50%; z-index: 20; background-color: #EF5350;">
-        </div>
-        <div
-          style="position: absolute; width: 150px; height: 150px; border-radius: 50%; z-index: 15; background-color: #EF5350;; opacity: 0.3;">
-        </div>
-        <div
-          style="position: absolute; width: 200px; height: 200px; border-radius: 50%; z-index: 10; background-color: #EF5350;; opacity: 0.1;">
-        </div>
-      </div>
-    </div>
-
-    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-      <h2 style="color: #EF5350; font-size: 18px; font-weight: 700; margin-top: 8px;">
-        Ошибка оплаты
-      </h2>
-    </div>
-  </div>
-
-  <button onclick="window.Telegram.WebApp.close()">
-    ЗАКРЫТЬ
+  <button type="button" onclick="window.open('$!QR_CODE_URL','_blank');">
+    К оплате
   </button>
 
+  <div align="center">
+    <img id="img-result" src=""><br><em id="payment-result">&nbsp;</em><br><br>
+  </div>
+
 </body>
+
+<script type="text/javascript">
+
+  var checkStatusUrl = "$!QR_STATUS_URL";
+
+  function reqListener() {
+    console.log(this.responseText);
+
+    const status = JSON.parse(this.responseText);
+
+    if (status.processing) {
+      setTimeout(checkStatus, 1000);
+    } else {
+
+      if (status.success) {
+        document.getElementById("payment-result").style["color"] = "green";
+        document.getElementById('payment-result').innerText = "Успешная оплата";
+        document.getElementById('img-result').src = "data:image/png;base64,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";
+      } else {
+        document.getElementById("payment-result").style["color"] = "red";
+        document.getElementById('payment-result').innerText = "Оплата не прошла";
+        document.getElementById('img-result').src = "data:image/png;base64,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";
+      }
+
+      setTimeout(function () {
+        window.location.replace(status.redirectUrl);
+      }, 2000);
+
+    }
+
+  }
+
+  function checkStatus() {
+    const req = new XMLHttpRequest();
+    req.addEventListener("load", reqListener);
+    req.open("GET", checkStatusUrl);
+    req.send();
+  }
+
+  setTimeout(checkStatus, 2000);
+
+</script>
 
 </html>
