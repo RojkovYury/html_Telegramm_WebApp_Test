@@ -29,42 +29,10 @@
       background-color: #4573d6;
     }
 
-    .qr-wrapper {
-      position: relative;
-      width: 300px;
-      height: 300px;
-      margin: 16px auto;
-    }
-
     .qr-code {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      left: 0;
-      top: 0;
-    }
-
-    .sbp-logo,
-    .sbp-logo img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
-      z-index: 1;
-    }
-
-    .sbp-logo {
-      height: calc(25% / 1.5);
-      width: calc(33% / 1.5);
-      background: #fff;
-      overflow: hidden;
-    }
-
-    .sbp-logo img {
-      display: block;
-      max-height: 80%;
-      transform: translateY(-50%) translateX(0);
-      left: 17px;
+      width: 293px;
+      height: 293px;
     }
   </style>
 </head>
@@ -100,14 +68,18 @@
     Пройдите по ссылке для проведения оплаты через СБП
   </p>
 
-  <div class="qr-wrapper">
+  <div style="position: relative;  display: flex; width: 100%; justify-content: center; ">
+    <img width="150px" src="https://sbp.nspk.ru/assets/images/logo-black.svg" alt="SBP LOGO">
+  </div>
+
+  <div
+    style="position: relative;  width: 330px;  height: 330px;  margin: auto;  display: flex;  justify-content: center;  align-items: center;">
     <img class="qr-code"
-      src="https://api.qrserver.com/v1/create-qr-code/?data=https://qr.nspk.ru/AD10007KQ4MRO8KG8B980SJUL84HTO9B?type=02&bank=100000000034&sum=95660&cur=RUB&crc=6F5B"
+      src="https://api.qrserver.com/v1/create-qr-code/?data=https://qr.nspk.ru/AD10007KQ4MRO8KG8B980SJUL84HTO9B?type=02&bank=100000000034&sum=95660&cur=RUB&crc=6F5B;size=293x293"
       alt="QR-код">
   </div>
 
-  <button type="button"
-    onclick="window.open('https://qr.nspk.ru/AD10007KQ4MRO8KG8B980SJUL84HTO9B?type=02&bank=100000000034&sum=95660&cur=RUB&crc=6F5B','_blank');">
+  <button type="button" onclick="window.open('$!QR_CODE_URL','_blank');">
     К оплате
   </button>
 
